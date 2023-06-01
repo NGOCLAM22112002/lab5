@@ -1,7 +1,10 @@
 package com.example.nguyenmaingoclam.entity;
 
 import com.example.nguyenmaingoclam.validator.annotation.ValidCategoryId;
+import com.example.nguyenmaingoclam.validator.annotation.ValidUserId;
+import com.example.nguyenmaingoclam.validator.annotation.ValidUsername;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -31,4 +34,9 @@ public class Book {
     @JoinColumn(name = "category_id")
     @ValidCategoryId
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ValidUserId
+    private User user;
 }
