@@ -44,10 +44,14 @@ public class SecurityConfig {
                                 "/error")
                         .permitAll()
                         .requestMatchers( "/books/edit", "/books/delete")
-                        .hasAnyAuthority("ADMIN")
+                        .authenticated()
+
                         .requestMatchers("/books", "/books/add")
-                        .hasAnyAuthority("ADMIN", "USER")
+
+                        .authenticated()
+
                         .anyRequest().authenticated()
+
                 )
                 .logout(logout -> logout.logoutUrl("/logout")
                         .logoutSuccessUrl("/login")
